@@ -3,6 +3,7 @@ require 'pry'
 
 feature "Bank Accounts Index", js: true do 
   login_js
+  
   context "with bank accounts" do
     before(:each) do
       @account_count = 5
