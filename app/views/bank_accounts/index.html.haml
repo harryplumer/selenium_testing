@@ -1,0 +1,23 @@
+%h1 All My Monies 
+%h2 The more money we come across, the more problems we see
+%hr 
+
+-if @bank_accounts.any?
+  %ul
+    -@bank_accounts.each do |bank_account|
+      %li.bank-account
+        %h3 
+          Institution: 
+          =link_to bank_account.institution, bank_account , class: "show-account"
+        %p 
+          Description 
+          = bank_account.description 
+        =link_to "Edit", edit_bank_account_path(bank_account)
+        =link_to("Delete", bank_account_path(bank_account), method: :delete, 
+          data: {confirm: 'Really Delete?'}, class: "delete-account")
+-else
+  %h3 No Bank Accounts! Go get that paper!
+%br 
+= link_to "New Bank Account", new_bank_account_path, id: "new-bank-account"  
+
+

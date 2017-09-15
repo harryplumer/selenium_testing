@@ -1,0 +1,30 @@
+%h1 
+  =@bank_account.institution
+%h3
+  =@bank_account.description 
+%hr 
+
+%h2 More Info 
+%hr 
+
+%h2 
+  Current Balance: 
+  =number_to_currency(@bank_account.amount)
+
+%h4 Ledger Transactions 
+
+%ol 
+  -@bank_account.ledger.each do |transaction|
+    %li 
+      %h3 
+        Transaction Date: 
+        = transaction[:ledger_change]
+      %h3 
+        Old Amount: 
+        = number_to_currency(transaction[:previous_amount])
+      %h3 
+        New Amount: 
+        = number_to_currency(transaction[:new_amount])
+
+= link_to 'Edit', edit_bank_account_path(@bank_account), class: 'edit'
+= link_to 'Back', bank_accounts_path, class: 'back'
